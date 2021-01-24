@@ -30,12 +30,12 @@ app.get('/', (req, res) => {
   res.render('index.ejs')
 })
 
-app.get('/skins', (req, res) => {
+app.get('/produkter', (req, res) => {
   //rendera sidan index.ejs
 res.render('produkter.ejs')
 })
 
-app.get('/abilities', (req, res) => {
+app.get('/services', (req, res) => {
   //rendera sidan index.ejs
 res.render('services.ejs')
 })
