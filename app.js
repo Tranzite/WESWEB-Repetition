@@ -46,7 +46,9 @@ app.post('/', function (req, res) {
     
     dbModule.storeElement(message)
 
-    res.redirect('/')
+    let text =  " " + req.body.message
+
+    res.render('pages/index.ejs', { text })
 })
 
 //Sätt igång servern så att den kan ta emot requests på vald port.
