@@ -27,7 +27,8 @@ app.set('view engine' , 'ejs')
 //Lyssnar på GET requests på addressen <domain>/
 app.get('/', (req, res) => {
     //rendera sidan index.ejs
-  res.render('index.ejs')
+    const messages = await MessageModel.getAllMessages();
+  res.render('index.ejs', { messages:messages});
 })
 
 app.get('/produkter', (req, res) => {
@@ -42,14 +43,16 @@ res.render('services.ejs')
 
 //Lyssnar på POST requests på addressen <domain>/
 app.post('/', function (req, res) {
+
     const message = MessageModel.createMessage(req.body.email, req.body.message)
     
     dbModule.storeElement(message)
 
-    let text =  " " + req.body.message
+    await dbModule.storeElement(message);
 
-    res.render('pages/index.ejs', { text })
+    res.render('/');
 })
+
 
 //Sätt igång servern så att den kan ta emot requests på vald port.
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
